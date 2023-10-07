@@ -20,7 +20,7 @@ COPY . .
 RUN ng build --configuration=production
 
 # Use a lightweight Nginx image as the runtime environment
-FROM nginx:alpine
+FROM nginx:latest
 
 # Copy the built Angular app from the build stage to the Nginx web server directory
 COPY --from=build /app/dist/* /usr/share/nginx/html/
