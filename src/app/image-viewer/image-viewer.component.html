@@ -1,0 +1,62 @@
+<div class="image-viewer-container">
+  <div>
+    <h1>Group Photo</h1>
+
+    <!-- Display search input for filtering names -->
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterData()"
+      placeholder="Search by name"
+    />
+
+    <!-- Display filtered names in the dropdown -->
+    <div class="dropdown" [class.visible]="showDropdown">
+      <ul>
+        <li
+          *ngFor="let item of filteredData"
+          (click)="selectName(item); $event.stopPropagation()"
+        >
+         ({{item.srNo}}) {{ item.fullName }} ({{ item.division }})
+        </li>
+      </ul>
+    </div>
+
+    <!-- Display zoom buttons -->
+    <div class="zoom-buttons">
+      <button (click)="zoomIn()">Zoom In</button>
+      <button (click)="zoomOut()">Zoom Out</button>
+      <button (click)="resetZoom()">Reset Zoom</button>
+    </div>
+
+    <!-- Display zoom level -->
+    <p class="zoom-level">Zoom Level: {{ zoomLevel }}%</p>
+
+    <!-- Display image container with wooden frame -->
+    <div
+      id="image-container"
+      #imageContainer
+      (click)="pasteOnImage($event)"
+      (mousedown)="onMouseDown($event)"
+      (mousemove)="onMouseMove($event)"
+      (mouseup)="onMouseUp($event)"
+      (touchstart)="onTouchStart($event)"
+      (touchmove)="onTouchMove($event)"
+      (touchend)="onTouchEnd($event)"
+      [style.width.px]="containerWidth"
+      [style.height.px]="containerHeight"
+    >
+      <!-- Display the wooden frame around the image -->
+      <div class="wooden-frame">
+        <img
+          id="image"
+          alt="Image"
+          [style.transform]="'scale(' + (zoomLevel / 100) + ') translate(' + imageTranslateX + 'px, ' + imageTranslateY + 'px)'"
+        />
+      </div>
+
+      <!-- Display the pasted text on the image -->
+      <div *ngIf="copiedText" class="pasted-text">{{ copiedText }}</div>
+    </div>
+  </div>
+</div>

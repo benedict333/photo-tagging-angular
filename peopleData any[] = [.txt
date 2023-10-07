@@ -1,0 +1,14 @@
+  peopleData: any[] = [
+    { srNo: 1, division: '10-A', house: 'Aayithamattam', fullName: 'Biju Antony', tagged: false },
+    { srNo: 2, division: '10-A', house: '', fullName: 'Biju Jose', tagged: false },
+    { srNo: 3, division: '10-A', house: '', fullName: 'Biju Thomas', tagged: false },
+    { srNo: 4, division: '10-A', house: '', fullName: 'Bino V.G', tagged: false },
+    { srNo: 5, division: '10-A', house: '', fullName: 'Jestin Philip', tagged: false },
+    { srNo: 6, division: '10-A', house: '', fullName: 'Mathew T.S', tagged: false },
+    { srNo: 7, division: '10-A', house: '', fullName: 'Maxin Sebastian', tagged: false },
+    { srNo: 8, division: '10-A', house: '', fullName: 'Rajesh T.R', tagged: false },
+    { srNo: 9, division: '10-A', house: '', fullName: 'Rajesh V.J', tagged: false },
+    { srNo: 10, division: '10-A', house: '', fullName: 'Reji Thomas', tagged: false }
+  ];
+
+ 'https://res.cloudinary.com/course4u/image/upload/v1696533308/ghss/photoshop-edited_10_zvsgls.jpg'; 

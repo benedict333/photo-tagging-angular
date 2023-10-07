@@ -1,0 +1,92 @@
+/* image-viewer.component.scss */
+
+/* Styles for the image container */
+#image-container {
+  position: relative;
+  display: inline-block;
+  cursor: grab; /* Change cursor on hover for dragging */
+  overflow: hidden; /* Hide overflow for panning */
+  width: 480px; /* Set the width of the container to 480px */
+}
+
+/* Create a wooden frame around the image */
+.wooden-frame {
+  width: 480px; /* Set the width of the frame to match the container */
+  height: 100vh; /* Match the viewport height to simulate a longer frame */
+  border: 15px solid #8b4513; /* Set the border size and color (wooden) */
+  box-sizing: border-box; /* Include the border in the element's dimensions */
+  position: relative;
+  overflow: hidden; /* Hide overflow for the inner frame */
+}
+
+/* Add styles for the image within the frame */
+.wooden-frame img {
+  width: auto; /* Allow the image width to adjust to its original size */
+  max-height: 100%; /* Make the image height 100% to fill the frame vertically */
+  max-width: none; /* Allow the image width to adjust to its original size */
+  display: block;
+  margin: 0 auto;
+  z-index: 0; /* Position the image above the frame */
+}
+
+/* Optional: Add styles for the pasted text */
+.pasted-text {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border: 1px solid #000;
+  font-size: 16px;
+  color: black; /* Text color */
+  background-color: white; /* Background color */
+  pointer-events: none; /* Prevent the pasted text from blocking clicks on the image */
+}
+
+/* Add styles for the dropdown */
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  z-index: 1; /* Ensure the dropdown appears above the image */
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Add styles for the zoom controls */
+.zoom-controls {
+  margin-top: 10px;
+}
+
+.zoom-controls button {
+  margin-right: 10px;
+}
+
+/* Rest of your existing CSS styles */
+
+/* Rest of your styles */
+
+/* Mobile-first styles (no media query needed) */
+.image-container {
+  position: relative;
+  display: inline-block;
+  cursor: grab; /* Change cursor on hover for dragging */
+}
+
+/* Media query for larger screens (e.g., width greater than 768px) */
+@media screen and (min-width: 769px) {
+  #image-container {
+    width: 100%; /* 100% width for larger screens */
+    max-width: 480px; /* Adjust this value as needed for your layout */
+    height: auto; /* Allow the height to adjust based on content */
+  }
+}
