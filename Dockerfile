@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular app for production
-RUN ng build --prod
+RUN ng build --configuration=production
 
 # Use a lightweight Nginx image as the runtime environment
 FROM nginx:alpine
