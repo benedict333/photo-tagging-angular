@@ -8,12 +8,13 @@ import { DataService } from '../data.service'; // Import the DataService
   styleUrls: ['./image-viewer.component.scss'],
 })
 export class ImageViewerComponent implements OnInit {
-  constructor(private imageService: ImageService, private dataService: DataService) {}
+  constructor(private imageService: ImageService, private dataService: DataService) {  this.showDropdown = false; }
   public isDragging: boolean = false;
   public startX: number = 0;
   public startY: number = 0;
   public imageTranslateX: number = 0;
   public imageTranslateY: number = 0;
+  
 
   @ViewChild('imageContainer', { static: true }) imageContainer: ElementRef | undefined;
 
@@ -109,6 +110,7 @@ export class ImageViewerComponent implements OnInit {
       this.dataFromService = data;
       this.filteredData = data; // Initialize filteredData with all data
     });
+    this.showDropdown = false;
   }
   
 
@@ -122,19 +124,20 @@ export class ImageViewerComponent implements OnInit {
     });
   }
 
-  // Function to handle name selection
-  selectName(item: any) {
-    console.log('selectName called with:', item);
-    // Copy the selected data
-    this.selectedName = item.fullName;
-    this.selectedDivision = item.division;
-    // Hide the dropdown after selection
-    this.showDropdown = false;
-    // Clear the search term
-    this.searchTerm = '';
-    // Clear the filtered data
-    this.filteredData = [];
-  }
+// Function to handle name selection
+selectName(item: any) {
+  console.log('selectName called with:', item);
+  // Copy the selected data
+  this.selectedName = item.fullName;
+  this.selectedDivision = item.division;
+  // Hide the dropdown
+  this.showDropdown = false;
+  // Clear the search term
+  this.searchTerm = '';
+  // Update the filtered data
+  this.filterData();
+}
+
 
   // Function to paste data on the image
   pasteOnImage(event: MouseEvent) {
@@ -165,18 +168,20 @@ export class ImageViewerComponent implements OnInit {
     }
   }
 
-  // Function to filter data based on the search term
-  filterData() {
-    if (this.searchTerm) {
-      this.filteredData = this.dataFromService.filter((item) =>
-        item.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-      this.showDropdown = true; // Show the dropdown when there are filtered results
-    } else {
-      this.filteredData = [...this.dataFromService]; // Reset to the original data
-      this.showDropdown = false; // Hide the dropdown when there are no filtered results
-    }
+// Function to filter data based on the search term
+filterData(isSearchBoxClick: boolean = false) {
+  if (this.searchTerm) {
+    this.filteredData = this.dataFromService.filter((item) =>
+      item.fullName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    // Show the dropdown only if the search box is clicked
+    this.showDropdown = isSearchBoxClick;
+  } else {
+    this.filteredData = [...this.dataFromService]; // Reset to the original data
+    // Hide the dropdown when there are no filtered results
+    this.showDropdown = false;
   }
+}
 
   // Function to zoom in
   zoomIn() {
@@ -195,7 +200,9 @@ export class ImageViewerComponent implements OnInit {
     this.zoomLevel = 100;
     this.updateImageSize();
   }
-
+  toggleDropdown() {
+    this.showDropdown = !this.showDropdown;
+  }
   // Function to update image size based on zoom level
   updateImageSize() {
     if (this.imageContainer) {

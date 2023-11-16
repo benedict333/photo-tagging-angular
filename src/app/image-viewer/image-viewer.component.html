@@ -2,25 +2,28 @@
   <div>
     <h1>Group Photo</h1>
 
-    <!-- Display search input for filtering names -->
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      (input)="filterData()"
-      placeholder="Search by name"
-    />
+<!-- Display search input for filtering names -->
+<input
+  type="text"
+  [(ngModel)]="searchTerm"
+  (input)="filterData(true)"
+  placeholder="Search by name"
+  (click)="toggleDropdown()"
+/>
 
-    <!-- Display filtered names in the dropdown -->
-    <div class="dropdown" [class.visible]="showDropdown">
-      <ul>
-        <li
-          *ngFor="let item of filteredData"
-          (click)="selectName(item); $event.stopPropagation()"
-        >
-         ({{item.srNo}}) {{ item.fullName }} ({{ item.division }})
-        </li>
-      </ul>
-    </div>
+<!-- Display filtered names in the dropdown -->
+<div class="dropdown" [class.visible]="showDropdown" (click)="toggleDropdown()">
+  <ul>
+    <li
+      *ngFor="let item of filteredData"
+      (click)="selectName(item); $event.stopPropagation()"
+    >
+      ({{item.srNo}}) {{ item.fullName }} ({{ item.division }})
+    </li>
+  </ul>
+</div>
+
+
 
     <!-- Display zoom buttons -->
     <div class="zoom-buttons">
