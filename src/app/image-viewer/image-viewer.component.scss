@@ -11,7 +11,7 @@
 
 /* Create a wooden frame around the image */
 .wooden-frame {
-  width: 480px; /* Set the width of the frame to 100% to match the container */
+  width: 100%; /* Set the width of the frame to 100% to match the container */
   height: 100vh; /* Match the viewport height to simulate a longer frame */
   border: 15px solid #8b4513; /* Set the border size and color (wooden) */
   box-sizing: border-box; /* Include the border in the element's dimensions */
